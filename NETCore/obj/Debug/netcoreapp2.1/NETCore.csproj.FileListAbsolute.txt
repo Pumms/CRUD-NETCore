@@ -1,0 +1,17 @@
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\appsettings.Development.json
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\appsettings.json
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.deps.json
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.runtimeconfig.json
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.runtimeconfig.dev.json
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.dll
+D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.pdb
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.csproj.CoreCompileInputs.cache
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.RazorAssemblyInfo.cache
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.RazorAssemblyInfo.cs
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.AssemblyInfoInputs.cache
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.AssemblyInfo.cs
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.RazorTargetAssemblyInfo.cache
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.dll
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.pdb
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.genruntimeconfig.cache

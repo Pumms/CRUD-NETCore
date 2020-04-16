@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Pummels\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Pummels\\.nuget\\packages"
+    ]
+  }
+}
