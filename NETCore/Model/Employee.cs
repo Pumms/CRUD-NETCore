@@ -18,6 +18,7 @@ namespace NETCore.Model
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
+        public string PhoneNumber { get; set; }
         public bool IsDelete { get; set; }
         public Nullable<DateTimeOffset> CreateDate { get; set; }
         public Nullable<DateTimeOffset> UpdateDate { get; set; }

@@ -60,6 +60,10 @@ namespace NETCore.Controllers
             {
                 put.Address = entity.Address;
             }
+            if (entity.PhoneNumber != null)
+            {
+                put.PhoneNumber = entity.PhoneNumber;
+            }
             if (entity.Department_Id != 0)
             {
                 put.Department_Id = entity.Department_Id;

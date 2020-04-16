@@ -19,6 +19,7 @@ function ClearScreen() {
     $('#Email').val('');
     $('#BirthDate').val('');
     $('#Address').val('');
+    $('#Phone').val('');
     $('#Department_Id').val(0);
     $('#Save').show();
     $('#Update').hide();
@@ -33,6 +34,7 @@ function Clearall() {
     $('#Email').val('');
     $('#BirthDate').val('');
     $('#Address').val('');
+    $('#Phone').val('');
     $('#Department_Id').val(0);
     $('#Save').show();
     $('#Edit').hide();
@@ -81,6 +83,7 @@ function LoadDataEmp() {
                 }
             },
             { "data": "address" },
+            { "data": "phoneNumber" },
             { "data": "departmentName" },
             {
                 "data": "createDate", "render": function (data) {
@@ -119,6 +122,7 @@ function Save() {
     Employee.Email = $('#Email').val();
     Employee.BirthDate = $('#BirthDate').val();
     Employee.Address = $('#Address').val();
+    Employee.PhoneNumber = $('#Phone').val();
     Employee.Department_Id = $('#Department_Id').val();
     if ($('#Fname').val() == "") {
         Swal.fire({
@@ -175,6 +179,7 @@ function GetById(Id) {
             $('#Email').val(obj2.email);
             $('#BirthDate').val(moment(obj2.birthDate).format('YYYY-MM-DD'));
             $('#Address').val(obj2.address);
+            $('#Phone').val(obj2.phoneNumber);
             $('#Department_Id').val(obj2.department_Id);
             $('#Edit').show();
             $('#Save').hide();
@@ -208,6 +213,7 @@ function Edit() {
             Employee.Email = $('#Email').val();
             Employee.BirthDate = $('#BirthDate').val();
             Employee.Address = $('#Address').val();
+            Employee.PhoneNumber = $('#Phone').val();
             Employee.Department_Id = $('#Department_Id').val();
             if ($('#Fname').val() == "") {
                 Swal.fire({
