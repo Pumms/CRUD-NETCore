@@ -68,6 +68,7 @@ function GetById(Id) {
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
+        async: false,
         success: function (result) {
             debugger;
             var obj = JSON.parse(result);
