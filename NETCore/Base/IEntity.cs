@@ -8,8 +8,8 @@ namespace NETCore.Base
 {
     public interface IEntity
     {
-        int Id { get; set; }
-        //string Name { get; set; }
+        //int Id { get; set; }
+
         bool IsDelete { get; set; }
         Nullable<DateTimeOffset> CreateDate { get; set; }
         Nullable<DateTimeOffset> UpdateDate { get; set; }

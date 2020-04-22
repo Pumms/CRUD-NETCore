@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NETCore.ViewModel;
 using Newtonsoft.Json;
@@ -13,18 +14,33 @@ namespace Client.Controllers
 {
     public class EmployeeController : Controller
     {
-        readonly HttpClient client = new HttpClient()
+        private HttpClient client = new HttpClient()
         {
             BaseAddress = new Uri("https://localhost:44375/api/")
         };
 
         public IActionResult Index()
         {
-            return View();
+            var role = HttpContext.Session.GetString("Role");
+            if (role == "Admin")
+            {
+                ViewData["Name_User"] = HttpContext.Session.GetString("FullName");
+                ViewData["Email"] = HttpContext.Session.GetString("Email");
+                return View();
+            }
+            else if (role == "User")
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                return RedirectToAction("Not_Found", "Auth");
+            }
         }
 
         public JsonResult LoadEmployee()
         {
+            client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
             EmployeeJson data = null;
             var responseTask = client.GetAsync("Employee");
             responseTask.Wait();
@@ -42,29 +58,23 @@ namespace Client.Controllers
             return Json(data);
         }
 
-        public JsonResult InsertorUpdate(EmployeeVM employee)
+        public JsonResult Update(EmployeeVM employee)
         {
+            client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
             var myContent = JsonConvert.SerializeObject(employee);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            if (employee.Id == 0)
-            {
-                var result = client.PostAsync("Employee", byteContent).Result;
-                return Json(result);
-            }
-            else
-            {
-                var result = client.PutAsync("Employee/" + employee.Id, byteContent).Result;
-                return Json(result);
-            }
+            var result = client.PutAsync("Employee/" + employee.Email, byteContent).Result;
+            return Json(result);
         }
 
-        public JsonResult GetById(int Id)
+        public JsonResult GetByEmail(string email)
         {
+            client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
             object data = null;
-            var responseTask = client.GetAsync("Employee/" + Id);
+            var responseTask = client.GetAsync("Employee/" + email);
             responseTask.Wait();
             var result = responseTask.Result;
             if (result.IsSuccessStatusCode)
@@ -80,9 +90,10 @@ namespace Client.Controllers
             return Json(data);
         }
 
-        public JsonResult Delete(int Id)
+        public JsonResult Delete(string email)
         {
-            var result = client.DeleteAsync("Employee/" + Id).Result;
+            client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
+            var result = client.DeleteAsync("Employee/" + email).Result;
             return Json(result);
         }
     }

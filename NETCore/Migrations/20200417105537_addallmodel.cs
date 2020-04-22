@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NETCore.Migrations
 {
-    public partial class addmodeldept : Migration
+    public partial class addallmodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +40,8 @@ namespace NETCore.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +56,7 @@ namespace NETCore.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     IsDelete = table.Column<bool>(nullable: false),
-                    CreateDate = table.Column<DateTimeOffset>(nullable: false),
+                    CreateDate = table.Column<DateTimeOffset>(nullable: true),
                     UpdateDate = table.Column<DateTimeOffset>(nullable: true),
                     DeleteDate = table.Column<DateTimeOffset>(nullable: true)
                 },
@@ -170,6 +171,33 @@ namespace NETCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TB_M_Employee",
+                columns: table => new
+                {
+                    Email = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    BirthDate = table.Column<DateTime>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    IsDelete = table.Column<bool>(nullable: false),
+                    CreateDate = table.Column<DateTimeOffset>(nullable: true),
+                    UpdateDate = table.Column<DateTimeOffset>(nullable: true),
+                    DeleteDate = table.Column<DateTimeOffset>(nullable: true),
+                    Department_Id = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TB_M_Employee", x => x.Email);
+                    table.ForeignKey(
+                        name: "FK_TB_M_Employee_TB_M_Department_Department_Id",
+                        column: x => x.Department_Id,
+                        principalTable: "TB_M_Department",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -208,6 +236,11 @@ namespace NETCore.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TB_M_Employee_Department_Id",
+                table: "TB_M_Employee",
+                column: "Department_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -228,13 +261,16 @@ namespace NETCore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TB_M_Department");
+                name: "TB_M_Employee");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "TB_M_Department");
         }
     }
 }

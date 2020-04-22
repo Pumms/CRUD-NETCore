@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Mini AdminPro/assets/images/favicon.png">
+    <title>@ViewData["Title"]</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Mini AdminPro/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- SweetAlert CSS -->
+    <link href="" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Mini AdminPro/main/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="~/Mini AdminPro/main/css/colors/blue.css" id="theme" rel="stylesheet">
+    <!-- Fontawsome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css" rel="stylesheet" />
+</head>
+<body class="mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Login</div>
+                    <div class="card-body mx-3 my-3">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" name="Email" required value="aslam@gmail.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" class="form-control" name="Password" required autofocus>
+                                @*<label class="mt-2">
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>*@
+                            </div>
+
+                            <div class="form-group text-center mb-0">
+                                <input type="submit" class="btn btn-primary w-100 px-2 py-2" value="Login" name="Login">
+                                @*<div class="mt-3">
+                                        Dont have a Account? <a href="/Auth/Register">Register</a>
+                                    </div>*@
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Mini AdminPro/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/Mini AdminPro/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Mini AdminPro/main/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Mini AdminPro/main/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Mini AdminPro/main/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/Mini AdminPro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Mini AdminPro/main/js/custom.min.js"></script>
+    <!-- This is data table -->
+    <script src="~/Mini AdminPro/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <!-- This is Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.9/dist/sweetalert2.all.min.js"></script>
+    <script src="~/Mini AdminPro/assets/plugins/moment/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+    @*Script Department JS*@
+    <script src="~/js/Auth.js"></script>
+    <!-- Style switcher -->
+    <script src="~/Mini AdminPro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+</body>
+</html>
+
+

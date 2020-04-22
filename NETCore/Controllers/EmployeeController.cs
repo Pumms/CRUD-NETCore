@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NETCore.Base;
 using NETCore.Context;
@@ -13,6 +15,7 @@ using static Dapper.SqlMapper;
 
 namespace NETCore.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : BaseController<Employee, EmployeeRepository>
@@ -24,49 +27,66 @@ namespace NETCore.Controllers
             this._repository = employeeRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<EmployeeVM>> Get()
+        [HttpDelete("{email}")]
+        public async Task<ActionResult<Employee>> Delete(string email)
         {
-            var get = await _repository.GetAllEmployee();
-            return Ok(new {data = get});
+            var delete = await _repository.Delete(email);
+
+            if (delete == null)
+            {
+                return NotFound();
+            }
+            return delete;
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, Employee entity)
+        [HttpGet("{email}")]
+        public async Task<ActionResult<Employee>> GetEmail(string email)
         {
-            entity.Id = id;
-            var put = await _repository.Get(id);
+            var getemail = await _repository.GetByEmail(email);
+            return Ok(new { data = getemail });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<EmployeeVM>> GetAll()
+        {
+            var getall = await _repository.GetAllEmployee();
+            return Ok(new {data = getall});
+        }
+
+        
+
+        [HttpPut("{email}")]
+        public async Task<ActionResult> Put(string email, Employee model)
+        {
+            model.Email = email;
+            var put = await _repository.GetByEmail(email);
             if (put == null)
             {
                 return BadRequest();
             }
-            if (entity.FirstName != null)
+            if (model.FirstName != null)
             {
-                put.FirstName = entity.FirstName;
+                put.FirstName = model.FirstName;
             }
-            if (entity.LastName != null)
+            if (model.LastName != null)
             {
-                put.LastName = entity.LastName;
+                put.LastName = model.LastName;
             }
-            if (entity.Email != null)
+            if (model.BirthDate != default(DateTime))
             {
-                put.Email = entity.Email;
+                put.BirthDate = model.BirthDate;
             }
-            if (entity.BirthDate != default(DateTime))
+            if (model.Address != null)
             {
-                put.BirthDate = entity.BirthDate;
+                put.Address = model.Address;
             }
-            if (entity.Address != null)
+            if (model.PhoneNumber != null)
             {
-                put.Address = entity.Address;
+                put.PhoneNumber = model.PhoneNumber;
             }
-            if (entity.PhoneNumber != null)
+            if (model.Department_Id != 0)
             {
-                put.PhoneNumber = entity.PhoneNumber;
-            }
-            if (entity.Department_Id != 0)
-            {
-                put.Department_Id = entity.Department_Id;
+                put.Department_Id = model.Department_Id;
             }
             put.UpdateDate = DateTimeOffset.Now;
             await _repository.Put(put);

@@ -6,7 +6,6 @@ D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.runtimec
 D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.runtimeconfig.dev.json
 D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.dll
 D:\Projek Visual Studio\NETCore\NETCore\bin\Debug\netcoreapp2.1\NETCore.pdb
-D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.csprojAssemblyReference.cache
 D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.csproj.CoreCompileInputs.cache
 D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.RazorAssemblyInfo.cache
 D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.RazorAssemblyInfo.cs
@@ -16,3 +15,4 @@ D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.RazorTar
 D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.dll
 D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.pdb
 D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.genruntimeconfig.cache
+D:\Projek Visual Studio\NETCore\NETCore\obj\Debug\netcoreapp2.1\NETCore.csprojAssemblyReference.cache

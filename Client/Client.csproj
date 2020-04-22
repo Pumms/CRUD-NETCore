@@ -6,14 +6,23 @@
 
   <ItemGroup>
     <Compile Remove="Content\**" />
+    <Compile Remove="Views\Home\**" />
     <Content Remove="Content\**" />
+    <Content Remove="Views\Home\**" />
     <EmbeddedResource Remove="Content\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
     <None Remove="Content\**" />
+    <None Remove="Views\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\HomeController.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
   </ItemGroup>
 

@@ -109,7 +109,7 @@ function Save() {
             data: Department
         }).then((result) => {
             debugger;
-            if (result.statusCode == 201) {
+            if (result.statusCode == 200) {
                 Swal.fire({
                     icon: 'success',
                     position: 'center',

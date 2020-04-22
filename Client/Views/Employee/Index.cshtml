@@ -15,42 +15,49 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <input type="text" class="form-control" id="Id" hidden>
-                    <div class="row mb-1">
+                    <div class="row form-group">
                         <div class="col">
-                            <label for="FirstName">First Name</label>
-                            <input type="text" class="form-control" id="FirstName" placeholder="Enter First Name">
+                            <label for="firstname">First Name</label>
+                            <input type="text" id="firstname" class="form-control" autofocus>
                         </div>
                         <div class="col">
-                            <label for="LastName">Last Name</label>
-                            <input type="text" class="form-control" id="LastName" placeholder="Enter Last Name">
-                        </div>
-                    </div>
-                    <div class="row mb-1">
-                        <div class="col">
-                            <label for="Email">Email</label>
-                            <input type="email" class="form-control" id="Email" placeholder="Enter Email">
-                        </div>
-                        <div class="col">
-                            <label for="BirthDate">Birth Date</label>
-                            <input type="date" class="form-control" id="BirthDate" placeholder="Enter Birth Date">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" id="lastname" class="form-control">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="Address">Address</label>
-                        <textarea type="text" class="form-control" id="Address" placeholder="Enter Address"></textarea>
-                    </div>
-                    <div class="row mb-1">
+
+                    <div class="row form-group">
                         <div class="col">
-                            <label for="Phone">Phone Number</label>
-                            <input type="text" class="form-control" id="Phone" maxlength="13" pattern="{10,13}" placeholder="Enter Phone Number">
+                            <label for="birthdate">Birth Date</label>
+                            <input type="date" id="birthdate" class="form-control">
                         </div>
                         <div class="col">
-                            <label for="Department_Id" class="">Department Name</label><br />
-                            <select id="Department_Id" class="custom-select w-100">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" id="phone" class="form-control" maxlength="13">
+                        </div>
+                        <div class="col">
+                            <label for="department" class="">Select Department</label>
+                            <select id="department" class="custom-select w-100">
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" class="form-control"></textarea>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col">
+                            <label for="email" id="text_email">Email</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="password" id="text_pass">Password</label>
+                            <input type="password" id="password" class="form-control">
+                        </div>
+                    </div>
+
+
                 </form>
             </div>
             <div class="modal-footer">

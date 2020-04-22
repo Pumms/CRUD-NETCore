@@ -10,8 +10,8 @@ using NETCore.Context;
 namespace NETCore.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20200415033403_addmodelemp")]
-    partial class addmodelemp
+    [Migration("20200417105537_addallmodel")]
+    partial class addallmodel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,9 @@ namespace NETCore.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -114,6 +117,8 @@ namespace NETCore.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -205,9 +210,8 @@ namespace NETCore.Migrations
 
             modelBuilder.Entity("NETCore.Model.Employee", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Email")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
 
@@ -219,21 +223,31 @@ namespace NETCore.Migrations
 
                     b.Property<int>("Department_Id");
 
-                    b.Property<string>("Email");
-
                     b.Property<string>("FirstName");
 
                     b.Property<bool>("IsDelete");
 
                     b.Property<string>("LastName");
 
+                    b.Property<string>("PhoneNumber");
+
                     b.Property<DateTimeOffset?>("UpdateDate");
 
-                    b.HasKey("Id");
+                    b.HasKey("Email");
 
                     b.HasIndex("Department_Id");
 
                     b.ToTable("TB_M_Employee");
+                });
+
+            modelBuilder.Entity("NETCore.Model.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+
+                    b.ToTable("User");
+
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

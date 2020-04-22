@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NETCore.Base;
@@ -9,6 +10,7 @@ using NETCore.Repository.Interface;
 
 namespace NETCore.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class BaseController<TEntity, TRepository>  : ControllerBase
@@ -33,8 +35,12 @@ namespace NETCore.Controllers
         [HttpPost]
         public async Task<ActionResult<TEntity>> Post(TEntity entity)
         {
-            await _repository.Post(entity);
-            return CreatedAtAction("Get", new { id = entity.Id }, entity);
+            var post = await _repository.Post(entity);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
         }
 
         [HttpDelete("{id}")]

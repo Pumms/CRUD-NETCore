@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     LoadDataEmp();
-    LoadDataDepartment('#Department_Id');
+    LoadDataDepartment('#department');
     $('#Edit').hide();
 
     $(function () {
@@ -13,29 +13,31 @@ document.getElementById("BtnAdd").addEventListener("click", function () {
 });
 
 function ClearScreen() {
-    $('#Id').val('');
-    $('#FirstName').val('');
-    $('#LastName').val('');
-    $('#Email').val('');
-    $('#BirthDate').val('');
-    $('#Address').val('');
-    $('#Phone').val('');
-    $('#Department_Id').val(0);
+    $('#firstname').val('');
+    $('#lastname').val('');
+    $('#email').val('');
+    $('#birthdate').val('');
+    $('#address').val('');
+    $('#phone').val('');
+    $('#department').val(0);
     $('#Save').show();
-    $('#Update').hide();
+    $('#edit').hide();
     $('#Delete').hide();
     $('#Modal').modal('hide');
+    $('#text_email').show();
+    $('#text_pass').show();
+    $('#email').show();
+    $('#password').show();
 }
 
 function Clearall() {
-    $('#Id').val('');
-    $('#FirstName').val('');
-    $('#LastName').val('');
-    $('#Email').val('');
-    $('#BirthDate').val('');
-    $('#Address').val('');
-    $('#Phone').val('');
-    $('#Department_Id').val(0);
+    $('#firstname').val('');
+    $('#lastname').val('');
+    $('#email').val('');
+    $('#birthdate').val('');
+    $('#address').val('');
+    $('#phone').val('');
+    $('#department').val(0);
     $('#Save').show();
     $('#Edit').hide();
 }
@@ -102,7 +104,7 @@ function LoadDataEmp() {
             },
             {
                 data: null, render: function (data, type, row) {
-                    return '<button type="button" class="btn btn-sm btn-warning" id="BtnEdit" data-toggle="tooltip" data-placement="top" title="Edit" onclick="return GetById(' + row.id + ')"><i class="mdi mdi-pencil"></i></button> <button type="button" class="btn btn-sm btn-danger mt-2" id="BtnDelete" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return Delete(' + row.id + ')"><i class="mdi mdi-delete"></i></button>';
+                    return '<button type="button" class="btn btn-sm btn-warning" id="BtnEdit" data-toggle="tooltip" data-placement="top" title="Edit" onclick="return GetByEmail(\'' + row.email + '\')"><i class="mdi mdi-pencil"></i></button> <button type="button" class="btn btn-sm btn-danger mt-2" id="BtnDelete" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return Delete(\'' + row.email + '\')"><i class="mdi mdi-delete"></i></button>';
                 }, "orderable": false
             }
         ]
@@ -113,74 +115,68 @@ function Save() {
     debugger;
     var table = $('#DataTable1').DataTable({
         "ajax": {
-            url: "/Department/LoadDepartment"
+            url: "/Employee/LoadEmployee"
         }
     });
     var Employee = new Object();
-    Employee.FirstName = $('#FirstName').val();
-    Employee.LastName = $('#LastName').val();
-    Employee.Email = $('#Email').val();
-    Employee.BirthDate = $('#BirthDate').val();
-    Employee.Address = $('#Address').val();
-    Employee.PhoneNumber = $('#Phone').val();
-    Employee.Department_Id = $('#Department_Id').val();
-    if ($('#Fname').val() == "") {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'First Name Cannot be Empty',
-        })
-        return false;
-    } else {
+    Employee.Email = $('#email').val();
+    Employee.Password = $('#password').val();
+    Employee.Firstname = $('#firstname').val();
+    Employee.Lastname = $('#lastname').val();
+    Employee.BirthDate = $('#birthdate').val();
+    Employee.PhoneNumber = $('#phone').val();
+    Employee.Address = $('#address').val();
+    Employee.Department_Id = $('#department').val();
+    $.ajax({
+        type: 'POST',
+        url: '/Auth/RegisterEmp/',
+        data: Employee
+    }).then((result) => {
         debugger;
-        $.ajax({
-            type: 'POST',
-            url: '/Employee/InsertorUpdate/',
-            data: Employee
-        }).then((result) => {
-            debugger;
-            if (result.statusCode == 201) {
-                Swal.fire({
-                    icon: 'success',
-                    position: 'center',
-                    title: 'Employee Saved Successfully',
-                    timer: 5000
-                }).then(function () {
-                    $('#Modal').modal('hide');
-                    table.ajax.reload();
-                    ClearScreen();
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Failed to Insert',
-                })
-                ClearScreen();
-            }
-        })
-    }
+        if (result.statusCode == 200) {
+            Swal.fire({
+                icon: 'success',
+                position: 'center',
+                title: 'Employee Saved Successfully',
+                timer: 5000
+            }).then(function () {
+                $('#Modal').modal('hide');
+                table.ajax.reload();
+                Clearscreen();
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to Insert!',
+            })
+            Clearscreen();
+        }
+    })
 }
 
-function GetById(Id) {
+function GetByEmail(Email) {
     debugger;
+    $('#text_email').hide();
+    $('#text_pass').hide();
+    $('#email').hide(); 
+    $('#password').hide();
     $.ajax({
-        url: "/Employee/GetById/" + Id,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
+        url: "/Employee/GetByEmail/"+Email,
+        type: "get",
         dataType: "json",
+        data: { "Email": Email },
         success: function (result) {
             debugger;
-            var obj = JSON.parse(result);
+            const obj = JSON.parse(result);
             const obj2 = JSON.parse(obj);
-            $('#Id').val(obj2.id);
-            $('#FirstName').val(obj2.firstName);
-            $('#LastName').val(obj2.lastName);
-            $('#Email').val(obj2.email);
-            $('#BirthDate').val(moment(obj2.birthDate).format('YYYY-MM-DD'));
-            $('#Address').val(obj2.address);
-            $('#Phone').val(obj2.phoneNumber);
-            $('#Department_Id').val(obj2.department_Id);
+            $('#email').val(obj2.data.email);
+            $('#firstname').val(obj2.data.firstName);
+            $('#lastname').val(obj2.data.lastName);
+            $('#birthdate').val(moment(obj2.data.birthDate).format('YYYY-MM-DD'));
+            $('#address').val(obj2.data.address);
+            $('#phone').val(obj2.data.phoneNumber);
+            $('#department').val(obj2.data.department_Id);
             $('#Edit').show();
             $('#Save').hide();
             $('#Modal').modal('show');
@@ -200,6 +196,7 @@ function Edit() {
         confirmButtonText: "Yes, Update this Data!",
         cancelButtonColor: "Red",
     }).then((result) => {
+        debugger
         if (result.value) {
             var table = $('#DataTable1').DataTable({
                 "ajax": {
@@ -207,25 +204,25 @@ function Edit() {
                 }
             });
             var Employee = new Object();
-            Employee.Id = $('#Id').val();
-            Employee.FirstName = $('#FirstName').val();
-            Employee.LastName = $('#LastName').val();
-            Employee.Email = $('#Email').val();
-            Employee.BirthDate = $('#BirthDate').val();
-            Employee.Address = $('#Address').val();
-            Employee.PhoneNumber = $('#Phone').val();
-            Employee.Department_Id = $('#Department_Id').val();
-            if ($('#Fname').val() == "") {
+            Employee.Email = $('#email').val();
+            Employee.Firstname = $('#firstname').val();
+            Employee.Lastname = $('#lastname').val();
+            Employee.BirthDate = $('#birthdate').val();
+            Employee.PhoneNumber = $('#phone').val();
+            Employee.Address = $('#address').val();
+            Employee.Department_Id = $('#department').val();
+            if ($('#firstname').val() == "" || $('#lastname').val() == "" || $('#birthdate').val() == "" || $('#phone').val() == "" || $('#address').val() == "") {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'First Name Cannot be Empty',
+                    text: 'Any Field Cannot be Empty',
                 })
                 return false;
             } else {
+                debugger;
                 $.ajax({
                     type: 'POST',
-                    url: '/Employee/InsertorUpdate/',
+                    url: '/Employee/Update/',
                     data: Employee
                 }).then((result) => {
                     debugger;
@@ -254,14 +251,13 @@ function Edit() {
     })
 }
 
-function Delete(Id) {
+function Delete(Email) {
     debugger;
     var table = $('#DataTable1').DataTable({
         "ajax": {
             url: "/Employee/LoadEmployee"
         }
     });
-
     Swal.fire({
         title: "Are you sure ?",
         text: "You won't be able to Revert this!",
@@ -273,7 +269,7 @@ function Delete(Id) {
             debugger;
             $.ajax({
                 url: "Employee/Delete/",
-                data: { Id: Id }
+                data: { Email: Email }
             }).then((result) => {
                 debugger;
                 if (result.statusCode == 200) {
