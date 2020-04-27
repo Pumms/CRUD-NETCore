@@ -59,7 +59,7 @@ namespace NETCore.Controllers
                         Email = model.Email
                     };
 
-                    var result = await _userManager.CreateAsync(users, model.Password);
+                    var result = await _userManager.CreateAsync(users, model.Password); //Insert User to AspNetUsers
 
                     if (result.Succeeded) //Kalo Insert ke AspNetUsers berhasil
                     {

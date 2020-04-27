@@ -1,7 +1,13 @@
 ﻿$(document).ready(function () {
     LoadDataEmp();
     LoadDataDepartment('#department');
+    DonutChart();
+    BarChart();
+
     $('#Edit').hide();
+    $('#hide1').hide();
+    $('#hide2').hide();
+    $('#hide3').hide();
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
@@ -68,12 +74,12 @@ function renderDepartment(element) {
 }
 
 function LoadDataEmp() {
-    debugger;
+    //debugger;
     $.fn.dataTable.ext.errMode = 'none';
     $('#DataTable1').DataTable({
         "ajax": {
             url: "/Employee/LoadEmployee",
-            type: "get",
+            type: "GET",
             dataType: "json"
         },
         "columns": [
@@ -112,7 +118,7 @@ function LoadDataEmp() {
 }
 
 function Save() {
-    debugger;
+    //debugger;
     var table = $('#DataTable1').DataTable({
         "ajax": {
             url: "/Employee/LoadEmployee"
@@ -132,7 +138,7 @@ function Save() {
         url: '/Auth/RegisterEmp/',
         data: Employee
     }).then((result) => {
-        debugger;
+        //debugger;
         if (result.statusCode == 200) {
             Swal.fire({
                 icon: 'success',
@@ -156,18 +162,18 @@ function Save() {
 }
 
 function GetByEmail(Email) {
-    debugger;
+    //debugger;
     $('#text_email').hide();
     $('#text_pass').hide();
-    $('#email').hide(); 
+    $('#email').hide();
     $('#password').hide();
     $.ajax({
-        url: "/Employee/GetByEmail/"+Email,
+        url: "/Employee/GetByEmail/" + Email,
         type: "get",
         dataType: "json",
         data: { "Email": Email },
         success: function (result) {
-            debugger;
+            //debugger;
             const obj = JSON.parse(result);
             const obj2 = JSON.parse(obj);
             $('#email').val(obj2.data.email);
@@ -188,7 +194,7 @@ function GetByEmail(Email) {
 }
 
 function Edit() {
-    debugger;
+    //debugger;
     Swal.fire({
         title: "Are you sure ?",
         text: "You won't be able to Revert this!",
@@ -196,7 +202,7 @@ function Edit() {
         confirmButtonText: "Yes, Update this Data!",
         cancelButtonColor: "Red",
     }).then((result) => {
-        debugger
+        //debugger;
         if (result.value) {
             var table = $('#DataTable1').DataTable({
                 "ajax": {
@@ -252,7 +258,7 @@ function Edit() {
 }
 
 function Delete(Email) {
-    debugger;
+    //debugger;
     var table = $('#DataTable1').DataTable({
         "ajax": {
             url: "/Employee/LoadEmployee"
@@ -262,16 +268,15 @@ function Delete(Email) {
         title: "Are you sure ?",
         text: "You won't be able to Revert this!",
         showCancelButton: true,
-        confirmButtonText: "Yes, Delete it!",
-        cancelButtonColor: "Red",
+        confirmButtonText: "Yes, Delete it!"
     }).then((result) => {
         if (result.value) {
-            debugger;
+            //debugger;
             $.ajax({
-                url: "Employee/Delete/",
-                data: { Email: Email }
+                url: "/Employee/Delete/",
+                data: { "Email": Email }
             }).then((result) => {
-                debugger;
+                //debugger;
                 if (result.statusCode == 200) {
                     Swal.fire({
                         icon: 'success',
@@ -293,4 +298,53 @@ function Delete(Email) {
             })
         }
     })
-}
+};
+
+function DonutChart() {
+    //debugger;
+    $.ajax({
+        type: "GET",
+        url: "/Employee/GetChart",
+        success: function (result) {
+            //debugger;
+            Morris.Donut({
+                element: "DonutChart",
+                data: $.each(JSON.parse(result), function (index, val) {
+                    [{
+                        label: val.label,
+                        value: val.value
+                    }]
+                }),
+                resize: true,
+                colors: ['#009efb', '#55ce63', '#2f3d4a']
+            })
+        }
+    })
+};
+
+function BarChart() {
+    debugger;
+    $.ajax({
+        type: 'GET',
+        url: '/Employee/GetChart/',
+        success: function (data) {
+            Morris.Bar({
+                element: 'BarChart',
+                data: $.each(JSON.parse(data), function (index, val) {
+                    debugger;
+                    [{
+                        label: val.label,
+                        value: val.value
+                    }]
+                }),
+                xkey: 'label',
+                ykeys: ['value'],
+                labels: ['Total Employee'],
+                barColors: ['#009efb', '#55ce63', '#2f3d4a'],
+                hideHover: 'auto',
+                gridLineColor: '#eef0f2',
+                resize: true
+            })
+        }
+    })
+};

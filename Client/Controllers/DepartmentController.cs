@@ -32,7 +32,7 @@ namespace Client.Controllers
             }
             else if (role == "User")
             {
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Not_Found", "Auth");
             }
             else
             {
@@ -80,17 +80,17 @@ namespace Client.Controllers
             }
         }
 
-        public JsonResult GetById(int Id)
+        public JsonResult GetById(int id)
         {
             client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
-            object datadept = null;
-            var responseTask = client.GetAsync("Department/" + Id);
+            DepartmentVM datadept = null;
+            var responseTask = client.GetAsync("Department/" + id);
             responseTask.Wait();
             var result = responseTask.Result;
             if (result.IsSuccessStatusCode)
             {
                 var json = JsonConvert.DeserializeObject(result.Content.ReadAsStringAsync().Result).ToString();
-                datadept = JsonConvert.SerializeObject(json);
+                datadept = JsonConvert.DeserializeObject<DepartmentVM>(json);
             }
             else
             {

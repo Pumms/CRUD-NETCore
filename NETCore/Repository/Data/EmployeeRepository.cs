@@ -44,9 +44,19 @@ namespace NETCore.Repository.Data
         {
             using (var connection = new SqlConnection(_configuration.GetConnectionString("MyNetCoreConnection")))
             {
-                var procName = "SP_ViewEmployee";
+                var spName = "SP_ViewEmployee";
 
-                var employees = await connection.QueryAsync<EmployeeVM>(procName, commandType: CommandType.StoredProcedure);
+                var employees = await connection.QueryAsync<EmployeeVM>(spName, commandType: CommandType.StoredProcedure);
+                return employees;
+            }
+        }
+
+        public async Task<IEnumerable<ChartVM>> GetJmlEmployee()
+        {
+            using (var connection = new SqlConnection(_configuration.GetConnectionString("MyNetCoreConnection")))
+            {
+                var spName = "SP_Chart_CountEmployee";
+                var employees = await connection.QueryAsync<ChartVM>(spName, commandType: CommandType.StoredProcedure);
                 return employees;
             }
         }
@@ -54,28 +64,6 @@ namespace NETCore.Repository.Data
         public async Task<Employee> GetByEmail(string email)
         {
             return await _myContext.Set<Employee>().FindAsync(email);
-        }
-
-        //public async Task<IEnumerable<EmployeeVM>> GetEmployee(string Email)
-        //{
-        //    using (var connection = new SqlConnection(_configuration.GetConnectionString("MyNetCoreConnection")))
-        //    {
-        //        var spName = "SP_DetailEmployee";
-        //        parameters.Add("@Email", Email);
-        //        var data = await connection.QueryAsync<EmployeeVM>(spName, parameters, commandType: CommandType.StoredProcedure);
-        //        return data;
-        //    }
-        //}
-
-        public async Task<IEnumerable<EmployeeVM>> GetEmailEmp(string email)
-        {
-            using (var connection = new SqlConnection(_configuration.GetConnectionString("MyNetCoreConnection")))
-            {
-                var spName = "SP_RetrieveByEmail_TB_M_Employee";
-                parameters.Add("@Email", email);
-                var data = await connection.QueryAsync<EmployeeVM>(spName, parameters, commandType: CommandType.StoredProcedure);
-                return data;
-            }
         }
     }
 }

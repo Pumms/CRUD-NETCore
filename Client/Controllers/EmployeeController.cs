@@ -30,7 +30,7 @@ namespace Client.Controllers
             }
             else if (role == "User")
             {
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Not_Found", "Auth");
             }
             else
             {
@@ -95,6 +95,32 @@ namespace Client.Controllers
             client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
             var result = client.DeleteAsync("Employee/" + email).Result;
             return Json(result);
+        }
+
+        public JsonResult GetChart()
+        {
+            IEnumerable<ChartVM> chartInfo = null;
+            List<ChartVM> chartData = new List<ChartVM>();
+            client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("JWToken"));
+            var responseTask = client.GetAsync("Employee/Chart");
+            responseTask.Wait();
+            var result = responseTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<ChartVM>>(); //Get all the data from the API
+                readTask.Wait();
+                chartInfo = readTask.Result;
+                foreach (var item in chartInfo)
+                {
+                    ChartVM data = new ChartVM();
+                    data.label = item.label;
+                    data.value = item.value;
+                    chartData.Add(data);
+                }
+                var json = JsonConvert.SerializeObject(chartData, Formatting.Indented);
+                return Json(json);
+            }
+            return Json("internal server error");
         }
     }
 }

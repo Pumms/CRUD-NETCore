@@ -1,46 +1,59 @@
 ﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "404 Not Found";
 }
 
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>404 Not Found</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:900" rel="stylesheet">
-        <link href="~/css/style404.css" rel="stylesheet" />
-
-        <!--[if lt IE 9]>
-              <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
-    </head>
-    <body>
-        <div id="notfound">
-            <div class="notfound">
-                <div class="notfound-404">
-                    <h3>Oops! Page not found</h3>
-                    <h1><span>4</span><span>0</span><span>4</span></h1>
-                </div>
-                <h2>we are sorry, but the page you requested was not found</h2>
-            </div>
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h3>Oops! Page not found</h3>
+            <h1><span>4</span><span>0</span><span>4</span></h1>
         </div>
+        <h2>we are sorry, but the page you requested was not found</h2>
+    </div>
+</div>
+@section scripts{
+    <!-- All Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Mini AdminPro/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/Mini AdminPro/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Mini AdminPro/main/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Mini AdminPro/main/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Mini AdminPro/main/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/Mini AdminPro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Mini AdminPro/main/js/custom.min.js"></script>
+    <!-- This is data table -->
+    <script src="~/Mini AdminPro/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <!-- This is Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.9/dist/sweetalert2.all.min.js"></script>
+    <script src="~/Mini AdminPro/assets/plugins/moment/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+    @*Script Department JS*@
+    <script src="~/js/Department.js"></script>
+    <!-- Style switcher -->
+    <script src="~/Mini AdminPro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-        <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-        <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="text/javascript"></script>
-        <script type="text/javascript">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-23581568-13');
-        </script>
-
-
-    </body>
-    </html>
+        gtag('config', 'UA-23581568-13');
+    </script>
+}

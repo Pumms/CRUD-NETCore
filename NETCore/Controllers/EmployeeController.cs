@@ -53,7 +53,13 @@ namespace NETCore.Controllers
             return Ok(new {data = getall});
         }
 
-        
+        [HttpGet]
+        [Route("Chart")]
+        [HttpGet]
+        public async Task<IEnumerable<ChartVM>> GetChart()
+        {
+            return await _repository.GetJmlEmployee();
+        }
 
         [HttpPut("{email}")]
         public async Task<ActionResult> Put(string email, Employee model)

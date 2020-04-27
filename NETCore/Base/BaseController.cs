@@ -21,17 +21,6 @@ namespace NETCore.Controllers
 
         public BaseController(TRepository repository) { this._repository = repository;  }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEntity>> Get(int id)
-        {
-            var get = await _repository.Get(id);
-            if(get == null)
-            {
-                return NotFound();
-            }
-            return Ok(get);
-        }
-
         [HttpPost]
         public async Task<ActionResult<TEntity>> Post(TEntity entity)
         {

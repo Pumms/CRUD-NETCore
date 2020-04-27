@@ -56,8 +56,6 @@
                             <input type="password" id="password" class="form-control">
                         </div>
                     </div>
-
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -86,6 +84,28 @@
         </div>
     </div>
     <!-- End Bread crumb and right sidebar toggle -->
+    <div class="row">
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Donute Chart</h4>
+                    <div id="DonutChart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Bar Chart</h4>
+                    <div id="BarChart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+    </div>
     <!-- Start Page Content -->
     <div class="row">
         <div class="col-12">
@@ -143,21 +163,16 @@
     <script src="~/Mini AdminPro/main/js/custom.min.js"></script>
     <!-- This is data table -->
     <script src="~/Mini AdminPro/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-    <!-- start - This is for export functionality only -->
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-    <!-- end - This is for export functionality only -->
     <!-- This is Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.9/dist/sweetalert2.all.min.js"></script>
     <script src="~/Mini AdminPro/assets/plugins/moment/moment.js"></script>
     <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
     @*Script Department JS*@
     <script src="~/js/Employee.js"></script>
+    <!--Morris JavaScript -->
+    <script src="~/Mini AdminPro/assets/plugins/raphael/raphael-min.js"></script>
+    <script src="~/Mini AdminPro/assets/plugins/morrisjs/morris.min.js"></script>
+    @*<script src="~/Mini AdminPro/main/js/morris-data.js"></script>*@
     <!-- Style switcher -->
     <script src="~/Mini AdminPro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 }

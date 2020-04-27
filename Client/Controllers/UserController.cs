@@ -19,7 +19,13 @@ namespace Client.Controllers
         public IActionResult Index()
         {
             var role = HttpContext.Session.GetString("Role");
-            if (role != null || role != "")
+            if (role == "Admin")
+            {
+                ViewData["Name_User"] = HttpContext.Session.GetString("FullName");
+                ViewData["Email"] = HttpContext.Session.GetString("Email");
+                return View();
+            }
+            else if (role == "User")
             {
                 ViewData["Name_User"] = HttpContext.Session.GetString("FullName");
                 ViewData["Email"] = HttpContext.Session.GetString("Email");

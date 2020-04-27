@@ -32,7 +32,7 @@ function LoadDataDept() {
     $('#DataTable1').DataTable({
         "ajax": {
             url: "/Department/LoadDepartment",
-            type: "get",
+            type: "GET",
             dataType: "json"
         },
         "columns": [
@@ -61,20 +61,18 @@ function LoadDataDept() {
     });
 }
 
-function GetById(Id) {
+function GetById(id) {
     debugger;
     $.ajax({
-        url: "/Department/GetById/" + Id,
+        url: "/Department/GetById/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         async: false,
         success: function (result) {
             debugger;
-            var obj = JSON.parse(result);
-            const obj2 = JSON.parse(obj);
-            $('#Id').val(obj2.id);
-            $('#Name').val(obj2.name);
+            $('#Id').val(result.id);
+            $('#Name').val(result.name);
             $('#Edit').show();
             $('#Save').hide();
             $('#Modal').modal('show');
@@ -201,8 +199,7 @@ function Delete(Id) {
         title: "Are you sure ?",
         text: "You won't be able to Revert this!",
         showCancelButton: true,
-        confirmButtonText: "Yes, Delete it!",
-        cancelButtonColor: "Red"
+        confirmButtonText: "Yes, Delete it!"
     }).then((result) => {
         if (result.value) {
             debugger;

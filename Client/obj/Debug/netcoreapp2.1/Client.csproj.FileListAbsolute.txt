@@ -19,6 +19,8 @@ D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.AssemblyIn
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.TagHelpers.input.cache
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.TagHelpers.output.cache
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.RazorCoreGenerate.cache
+D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Auth\Login.cshtml.g.cs
+D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Auth\Not_Found.cshtml.g.cs
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Auth\Register.cshtml.g.cs
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Department\Index.cshtml.g.cs
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Employee\Index.cshtml.g.cs
@@ -36,5 +38,3 @@ D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.csproj.Cop
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.dll
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.pdb
 D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Client.genruntimeconfig.cache
-D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Auth\Login.cshtml.g.cs
-D:\Projek Visual Studio\NETCore\Client\obj\Debug\netcoreapp2.1\Razor\Views\Auth\Not_Found.cshtml.g.cs
